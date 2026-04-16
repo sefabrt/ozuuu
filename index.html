@@ -84,15 +84,15 @@
             50% { transform: scale(1.03); text-shadow: 0 4px 25px rgba(255, 255, 255, 0.7); } 
         }
 
-        /* RENGARENK YAZI EFEKTİ (YENİ EKLENDİ) */
+        /* PEMBE VE BEYAZ TONLARINDA YAZI EFEKTİ */
         .rengarenk-yazi {
-            background: linear-gradient(90deg, #ffeb3b, #00e5ff, #b388ff, #ff5252, #ffeb3b);
+            background: linear-gradient(90deg, #ffffff, #ff9a9e, #ff4757, #ff9a9e, #ffffff);
             background-size: 200% auto;
             color: transparent;
             -webkit-background-clip: text;
             background-clip: text;
             animation: rainbowAnim 3s linear infinite;
-            text-shadow: none; /* Gradientin net görünmesi için gölgeyi kaldırdık */
+            text-shadow: none; 
         }
         @keyframes rainbowAnim {
             to { background-position: 200% center; }
