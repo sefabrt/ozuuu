@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sadece Senin İçin... 🤍</title>
+    <title>🤍</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -94,7 +94,7 @@
 
         h2 { font-weight: 800; font-size: 1.5rem; margin-bottom: 25px; letter-spacing: 0.5px; }
 
-        /* Modern Şık Butonlar (Staggered Delay ile gelecek) */
+        /* Modern Şık Butonlar */
         .option-btn {
             display: block; width: 100%; padding: 16px; margin: 15px 0;
             background: rgba(255, 255, 255, 0.95);
@@ -145,20 +145,20 @@
     <div id="heart-bg" class="heart-bg"></div>
 
     <div id="screen-intro" class="screen active">
-        <div class="pulsate">Seni kırdım galiba... 🥺</div>
-        <p style="font-weight: 400; font-size: 1.1rem; opacity: 0.9;">Tarzını ne kadar iyi tanıyorum, test edelim mi?</p>
+        <div class="pulsate">Zinconurumu üzdümmmm... 🥺</div>
+        <p style="font-weight: 400; font-size: 1.1rem; opacity: 0.9;">şimdi senle bi test yapcaz adam ol</p>
         <button class="rose-btn" onclick="nextScreen('screen-quiz')">🌹</button>
     </div>
 
     <div id="screen-quiz" class="screen">
         <h2 id="q-text">Hazır mısın?</h2>
         <div id="options">
-            <button class="option-btn" onclick="loadQ()">Evet, Başlayalım ✨</button>
+            <button class="option-btn" onclick="loadQ()">Eved, aşkım sana hep hazırım ✨</button>
         </div>
     </div>
 
     <div id="screen-bags" class="screen">
-        <h2>Favori Modelin? 🤔</h2>
+        <h2>Peki Favori Modelin? 🤔</h2>
         <div class="bags-container">
             <div class="bag-card" onclick="selectBag(1)">
                 <img src="canta1.png" class="bag-img" alt="Zarif Seri">
@@ -191,10 +191,9 @@
         let selectedBagId = 0;
         const colors = ["bordo", "siyah", "kahverengi"];
 
-        // Ekranlar arası geçişi animasyonlu yapmak için ufak bir bekleme süresi
         function nextScreen(id) {
             document.querySelectorAll('.screen').forEach(s => {
-                s.style.animation = 'none'; // Animasyonu sıfırla
+                s.style.animation = 'none'; 
                 s.classList.remove('active');
             });
             setTimeout(() => {
@@ -209,10 +208,8 @@
             const container = document.getElementById('color-list');
             container.innerHTML = '';
             
-            // Seçilen modelin 3 farklı rengini dinamik olarak listele
             colors.forEach((color, index) => {
                 const imgPath = `canta${id}_${color}.png`;
-                // Kartların sırayla gelmesi için animation-delay ekliyoruz (stagger effect)
                 const delay = index * 0.1; 
                 container.innerHTML += `
                     <div class="bag-card" style="animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards; opacity: 0;" onclick="finish('${color}')">
@@ -229,7 +226,6 @@
             nextScreen('screen-result');
         }
 
-        // Daha pürüzsüz yüzen kalpler
         setInterval(() => {
             const h = document.createElement("div");
             h.classList.add("heart");
@@ -241,28 +237,43 @@
             setTimeout(() => h.remove(), 8000);
         }, 600);
 
-        // Sorular Akışı
+        // Her soruya özel absürt cevap şıkları eklendi!
         let qIdx = 0;
-        const qs = [
-            "1. En sevdiğin renk tonları genelde koyu mudur?", 
-            "2. Şıklık senin için her şeyden önce mi gelir?", 
-            "3. Sürpriz testleri sever misin?"
+        const quizData = [
+            {
+                q: "1. Benim pi²m hakkındaki nacizane görüşün nedir?",
+                opts: ["Sanat eseri", "Dünya mirası", "Heybetli ve korkutucu"]
+            },
+            {
+                q: "2. Bana verir misin?",
+                opts: ["Eveddd!", "Hemen üstüme atla"]
+            },
+            {
+                q: "3. Sefa sence sapık mı?",
+                opts: ["Evet ama benim sapığım", "Kesinlikle %100 sapık", "Sadece bana karşı ;)"]
+            }
         ];
+
         function loadQ() {
             const optionsDiv = document.getElementById('options');
-            if(qIdx < qs.length) {
-                document.getElementById('q-text').innerText = qs[qIdx++];
-                // Butonları yenilerken küçük bir fade-in efekti
+            if(qIdx < quizData.length) {
+                const currentQ = quizData[qIdx];
+                qIdx++; // Bir sonraki soruya geçmesi için sayacı artır
+                
+                document.getElementById('q-text').innerText = currentQ.q;
                 optionsDiv.style.opacity = 0;
+                
                 setTimeout(() => {
-                    optionsDiv.innerHTML = `
-                        <button class="option-btn" onclick="loadQ()">Kesinlikle</button>
-                        <button class="option-btn" onclick="loadQ()">Bazen</button>
-                    `;
+                    optionsDiv.innerHTML = '';
+                    // O soruya ait özel şıkları buton olarak bas
+                    currentQ.opts.forEach(opt => {
+                        optionsDiv.innerHTML += `<button class="option-btn" onclick="loadQ()">${opt}</button>`;
+                    });
                     optionsDiv.style.transition = "opacity 0.5s";
                     optionsDiv.style.opacity = 1;
                 }, 200);
             } else { 
+                // Sorular bitince bir anda çantaya geç! Ters köşe.
                 nextScreen('screen-bags'); 
             }
         }
