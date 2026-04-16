@@ -6,114 +6,89 @@
     <title>Sadece Senin İçin... 🤍</title>
     <style>
         :root {
-            --primary-red: #ff7675;
-            --dark-red: #d63031;
-            --bg-color: #fef1f1;
-            --glass-bg: rgba(255, 255, 255, 0.45);
+            /* Seksi ve Tatlı Koyu Pembe Paleti */
+            --primary-pink: #ff4757;
+            --dark-pink: #e84393;
+            --deep-rose: #c0392b;
+            --glass-bg: rgba(255, 255, 255, 0.2);
             --glass-border: rgba(255, 255, 255, 0.3);
-            --text-color: #2d3436;
+            --text-color: #ffffff;
         }
 
         body {
             margin: 0; padding: 0;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            /* Koyu Pembe Gradyan Arka Plan */
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #e84393 100%);
             color: var(--text-color);
             text-align: center;
             overflow-x: hidden;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* Arka Plan Kalp Animasyonu (Yavaşlatıldı) */
-        .heart-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; pointer-events: none;
-        }
-        .heart {
-            position: absolute; font-size: 1.5rem;
-            animation: fall linear forwards; opacity: 0.6;
-        }
+        /* Arka Plan Kalpler */
+        .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .heart { position: absolute; animation: fall linear forwards; opacity: 0.8; }
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* Ana Kapsayıcı (iPhone Ekranına Tam Uyumlu) */
+        /* Cam Efektli Kapsayıcı */
         .screen {
             display: none; z-index: 10;
             background: var(--glass-bg);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            padding: 35px 25px;
-            border-radius: 25px;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 40px 25px;
+            border-radius: 30px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            width: 85%; max-width: 350px; /* iPhone 13 için ideal genişlik */
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            opacity: 0; transform: translateY(20px);
+            box-shadow: 0 20px 45px rgba(232, 67, 147, 0.3);
+            width: 85%; max-width: 350px;
+            transition: all 0.5s ease;
+            color: #fff;
         }
-        .active { display: block; opacity: 1; transform: translateY(0); }
+        .active { display: block; animation: fadeIn 0.6s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 1. Ekran - Minimal ve Ritmic Yazı */
         .pulsate {
-            font-size: 1.8rem; font-weight: 700; color: var(--text-color);
-            letter-spacing: -0.5px;
-            animation: pulse 2.5s infinite;
-            margin-bottom: 20px; line-height: 1.3;
+            font-size: 1.8rem; font-weight: 800;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+            margin-bottom: 25px;
         }
-        @keyframes pulse { 0% { opacity: 0.7; } 50% { opacity: 1; transform: scale(1.02); text-shadow: 0 0 15px rgba(255,118,117,0.3); } 100% { opacity: 0.7; } }
-        
-        .rose-btn {
-            font-size: 4rem; cursor: pointer; transition: transform 0.4s ease;
-            background: none; border: none; outline: none; margin-top: 20px;
-        }
-        .rose-btn:hover { transform: scale(1.15) rotate(5deg); }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* Soru ve Şıklar (Premium Butonlar) */
-        h2 { font-weight: 600; font-size: 1.4rem; margin-bottom: 25px; color: #000; }
+        .rose-btn { font-size: 5rem; cursor: pointer; background: none; border: none; transition: 0.4s; }
+        .rose-btn:hover { transform: scale(1.2); }
+
+        /* Kartlar ve Butonlar */
+        h2 { font-weight: 700; font-size: 1.5rem; margin-bottom: 20px; }
         .option-btn {
-            display: block; width: 100%;
-            padding: 16px; margin: 12px 0;
-            background: rgba(255, 255, 255, 0.7);
-            color: var(--text-color);
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 15px; font-size: 1.1rem; font-weight: 500;
-            cursor: pointer; transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            display: block; width: 100%; padding: 18px; margin: 12px 0;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--dark-pink);
+            border: none; border-radius: 18px;
+            font-size: 1.1rem; font-weight: 600;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
         }
-        .option-btn:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.05); }
 
-        /* Çanta Seçimi (Zevk Testi Modu) */
-        .bags-container {
-            display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px;
-        }
+        .bags-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .bag-card {
-            cursor: pointer; border: 2px solid transparent;
-            border-radius: 15px; overflow: hidden;
-            transition: all 0.3s ease; background: #fff;
-            padding: 10px; display: flex; align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px; padding: 12px;
+            display: flex; align-items: center;
+            transition: 0.3s;
         }
-        .bag-card:hover { transform: scale(1.03); border-color: var(--primary-red); }
-        .bag-img {
-            width: 70px; height: 70px; object-fit: cover; border-radius: 10px; margin-right: 15px;
-        }
-        .bag-meta { text-align: left; }
-        .bag-name { font-weight: 600; color: #000; font-size: 1.1rem; }
-        .bag-desc { font-size: 0.9rem; color: #636e72; }
+        .bag-card:active { transform: scale(0.95); }
+        .bag-img { width: 80px; height: 80px; object-fit: cover; border-radius: 12px; margin-right: 15px; }
+        .bag-name { color: var(--dark-pink); font-weight: 700; font-size: 1.2rem; }
 
-        /* Renk Seçimi */
-        .color-options { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
-        .color-btn {
-            width: 45px; height: 45px; border-radius: 50%;
-            border: 3px solid #fff; cursor: pointer;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* Renk Versiyonları */
+        .color-variants { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        .color-card {
+            background: #fff; border-radius: 20px; padding: 10px;
+            display: flex; align-items: center; border: 3px solid transparent;
         }
-        .color-btn:hover { transform: scale(1.15); }
-
-        /* Sonuç Ekranı */
-        .final-icon { font-size: 4rem; margin-bottom: 20px; }
-        .final-text { font-weight: 700; font-size: 1.6rem; color: #000; margin-bottom: 10px; }
+        .color-card.selected { border-color: var(--primary-pink); }
     </style>
 </head>
 <body>
@@ -121,148 +96,101 @@
     <div id="heart-bg" class="heart-bg"></div>
 
     <div id="screen-intro" class="screen active">
-        <div class="pulsate">Seni biraz kırdım galiba... 🥺</div>
-        <p style="color: #636e72; font-size: 1rem;">Bu durumu telafi etmeme izin verir misin?</p>
-        <p style="color: #636e72; font-size: 0.9rem; margin-top: 5px;">(Küçük bir zevk testiyle başlayalım)</p>
-        <button class="rose-btn" onclick="startQuiz()">🌹</button>
+        <div class="pulsate">Seni kırdım galiba... 🥺</div>
+        <p style="font-weight: 500;">Tarzını ne kadar iyi tanıyorum test edelim mi?</p>
+        <button class="rose-btn" onclick="nextScreen('screen-quiz')">🌹</button>
     </div>
 
     <div id="screen-quiz" class="screen">
-        <h2 id="question-text">Test Başlıyor...</h2>
-        <div id="options-container"></div>
+        <h2 id="q-text">Hazır mısın?</h2>
+        <div id="options">
+            <button class="option-btn" onclick="loadQ()">Evet, Başlayalım ✨</button>
+        </div>
     </div>
 
     <div id="screen-bags" class="screen">
-        <h2>Tarzını Çözüyorum! 🤔</h2>
-        <p style="color: #636e72; margin-bottom: 20px;">Aşağıdaki modellerden hangisi 'tam benlik' diyorsun?</p>
+        <h2>Favori Modelin? 🤔</h2>
         <div class="bags-container">
-            <div class="bag-card" onclick="selectBag('Klasik')">
-                <img src="canta1.png" alt="Model 1" class="bag-img" onerror="this.src='https://via.placeholder.com/70/ffe6e6/d63031?text=PNG1'">
-                <div class="bag-meta">
-                    <div class="bag-name">Model A</div>
-                    <div class="bag-desc">Minimal ve Şık</div>
-                </div>
+            <div class="bag-card" onclick="selectBag(1)">
+                <img src="canta1.png" class="bag-img">
+                <span class="bag-name">Zarif Seri</span>
             </div>
-            <div class="bag-card" onclick="selectBag('Modern')">
-                <img src="canta2.png" alt="Model 2" class="bag-img" onerror="this.src='https://via.placeholder.com/70/ffe6e6/d63031?text=PNG2'">
-                <div class="bag-meta">
-                    <div class="bag-name">Model B</div>
-                    <div class="bag-desc">Dinamik ve Rahat</div>
-                </div>
+            <div class="bag-card" onclick="selectBag(2)">
+                <img src="canta2.png" class="bag-img">
+                <span class="bag-name">Modern Seri</span>
             </div>
-            <div class="bag-card" onclick="selectBag('Zarif')">
-                <img src="canta3.png" alt="Model 3" class="bag-img" onerror="this.src='https://via.placeholder.com/70/ffe6e6/d63031?text=PNG3'">
-                <div class="bag-meta">
-                    <div class="bag-name">Model C</div>
-                    <div class="bag-desc">Sofistike ve Özgün</div>
-                </div>
+            <div class="bag-card" onclick="selectBag(3)">
+                <img src="canta3.png" class="bag-img">
+                <span class="bag-name">Klasik Seri</span>
             </div>
         </div>
     </div>
 
     <div id="screen-colors" class="screen">
-        <h2>Peki, Renk Paletin? 🎨</h2>
-        <p style="color: #636e72; margin-bottom: 20px;">Bu modelde hangi renk seni daha iyi yansıtır?</p>
-        <div class="color-options">
-            <div class="color-btn" style="background-color: #2d3436; border-color: #000;" onclick="finishOrder('Siyah')"></div>
-            <div class="color-btn" style="background-color: #fcfcfc; border-color: #eee;" onclick="finishOrder('Beyaz')"></div>
-            <div class="color-btn" style="background-color: #d63031; border-color: #a31f20;" onclick="finishOrder('Kırmızı')"></div>
-            <div class="color-btn" style="background-color: #f7d794; border-color: #f3a683;" onclick="finishOrder('Krem')"></div>
-            <div class="color-btn" style="background-color: #74b9ff; border-color: #0984e3;" onclick="finishOrder('Mavi')"></div>
-        </div>
+        <h2>Hangi Renk Seni Yansıtır? 🎨</h2>
+        <div id="color-list" class="color-variants"></div>
     </div>
 
     <div id="screen-result" class="screen">
-        <div class="final-icon">🤍</div>
-        <div class="final-text">Zevk Testi Tamamlandı!</div>
-        <p style="font-size: 1.1rem; color: #636e72; line-height: 1.5;">Harika seçimler yaptın. Tarzını artık çok daha iyi anlıyorum. Seni Çok Seviyorum! ❤️</p>
+        <div style="font-size: 4rem;">💖</div>
+        <h2>Zevkine Bayıldım!</h2>
+        <p id="final-choice" style="font-weight: 600;"></p>
+        <p>Tarzın tam beklediğim gibi muhteşem. Seni her halinle çok seviyorum! ❤️</p>
     </div>
 
     <script>
-        // ARKA PLAN ANİMASYONU (Daha yavaş ve narin)
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = ["🤍", "💖", "💕", "🌸"][Math.floor(Math.random() * 4)];
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 5 + 4 + "s"; // Daha yavaş
-            heart.style.fontSize = (Math.random() * 0.8 + 1) + "rem";
-            document.getElementById('heart-bg').appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 8000);
-        }
-        setInterval(createHeart, 500); // Daha seyrek
+        let selectedBagId = 0;
+        const colors = ["bordo", "siyah", "kahverengi"];
 
-        // SORULAR (Zevk Analizi Odaklı)
-        const questions = [
-            {
-                q: "1. Seni kırdığım için gerçekten çok üzgünüm...",
-                options: ["Farkındayım 🥺", "Lütfen bir daha olmasın", "Sana kızamıyorum ki", "Şu an geçti bile!"]
-            },
-            {
-                q: "2. Affetmek için küçük bir adıma ne dersin?",
-                options: ["Olabilir 🌸", "Tabii ki ✨", "Zaten affettim 💖", "Bakalım neymiş..."]
-            },
-            {
-                q: "3. Genel olarak giyim tarzın nasıldır?",
-                options: ["Klasik ve Sade", "Modern ve Spor", "Zarif ve Sofistike", "Rahat ve Bohem"]
-            },
-            {
-                q: "4. Bir aksesuar senin için ne ifade eder?",
-                options: ["Kıyafeti tamamlar", "Karakterimi yansıtır", "Sadece işlevseldir", "Modumu değiştirir"]
-            },
-            {
-                q: "5. Sürpriz analize hazır mısın?",
-                options: ["Evet, hazırım! 🔥", "Merakla bekliyorum", "Hadi başla!", "Kesinlikle! ✨"]
-            }
-        ];
-
-        let currentQuestionIndex = 0;
-
-        // EKRAN GEÇİŞ FONKSİYONU
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(s => {
-                s.classList.remove('active');
-            });
-            setTimeout(() => {
-                document.getElementById(screenId).classList.add('active');
-            }, 50);
+        function nextScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        function startQuiz() {
-            currentQuestionIndex = 0;
-            showScreen('screen-quiz');
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            if (currentQuestionIndex >= questions.length) {
-                showScreen('screen-bags');
-                return;
-            }
-            const qObj = questions[currentQuestionIndex];
-            document.getElementById('question-text').innerText = qObj.q;
+        function selectBag(id) {
+            selectedBagId = id;
+            const container = document.getElementById('color-list');
+            container.innerHTML = '';
             
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = ''; 
-            
-            qObj.options.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    currentQuestionIndex++;
-                    loadQuestion();
-                };
-                optionsContainer.appendChild(btn);
+            colors.forEach(color => {
+                const imgPath = `canta${id}_${color}.png`;
+                container.innerHTML += `
+                    <div class="bag-card" onclick="finish('${color}')">
+                        <img src="${imgPath}" class="bag-img" onerror="this.src='https://via.placeholder.com/80/e84393/ffffff?text=${color}'">
+                        <span class="bag-name" style="text-transform: capitalize;">${color}</span>
+                    </div>
+                `;
             });
+            nextScreen('screen-colors');
         }
 
-        function selectBag(bagModel) {
-            showScreen('screen-colors');
+        function finish(color) {
+            document.getElementById('final-choice').innerText = `Seçimin: ${color} versiyon!`;
+            nextScreen('screen-result');
         }
 
-        function finishOrder(color) {
-            showScreen('screen-result');
+        // Kalp Animasyonu
+        setInterval(() => {
+            const h = document.createElement("div");
+            h.classList.add("heart");
+            h.innerHTML = "💗";
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.getElementById('heart-bg').appendChild(h);
+            setTimeout(() => h.remove(), 6000);
+        }, 400);
+
+        // Basit Soru Mantığı
+        let qIdx = 0;
+        const qs = ["En sevdiğin renk koyu tonlar mıdır?", "Şıklık senin için her şeyden önce mi gelir?", "Sürprizleri sever misin?"];
+        function loadQ() {
+            if(qIdx < qs.length) {
+                document.getElementById('q-text').innerText = qs[qIdx++];
+                document.getElementById('options').innerHTML = `
+                    <button class="option-btn" onclick="loadQ()">Kesinlikle</button>
+                    <button class="option-btn" onclick="loadQ()">Bazen</button>
+                `;
+            } else { nextScreen('screen-bags'); }
         }
     </script>
 </body>
