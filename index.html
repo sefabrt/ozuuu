@@ -199,7 +199,7 @@
         <div class="bags-container">
             <div class="bag-card" onclick="selectBag(1)">
                 <img src="canta1.png" class="bag-img" alt="Zarif Seri">
-                <span class="bag-name">elklassiko lezbiyenno Serisi</span>
+                <span class="bag-name">El prosex Serisi</span>
             </div>
             <div class="bag-card" onclick="selectBag(2)">
                 <img src="canta2.png" class="bag-img" alt="Modern Seri">
@@ -207,7 +207,7 @@
             </div>
             <div class="bag-card" onclick="selectBag(3)">
                 <img src="canta3.png" class="bag-img" alt="Klasik Seri">
-                <span class="bag-name">El prosex Serisi</span>
+                <span class="bag-name">elklassiko lezbiyenno Serisi</span>
             </div>
         </div>
     </div>
@@ -233,7 +233,13 @@
 
     <script>
         let selectedBagId = 0;
-        const colors = ["bordo", "siyah", "kahverengi"];
+        
+        // HANGİ ÇANTADA HANGİ RENKLERİN ÇIKACAĞINI BURADAN AYARLIYORUZ (Senin eklediğin PNG isimleri)
+        const bagColors = {
+            1: ["bej", "kahverengi", "siyah"],
+            2: ["bordo", "siyah", "kahverengi"], // 2. Çanta için renk belirtilmediği için çökmesin diye standart renkler eklendi
+            3: ["siyah", "kahverengi", "lacivert"]
+        };
 
         function nextScreen(id) {
             document.querySelectorAll('.screen').forEach(s => {
@@ -252,7 +258,10 @@
             const container = document.getElementById('color-list');
             container.innerHTML = '';
             
-            colors.forEach((color, index) => {
+            // Seçilen çantanın kendi renk listesini alıyoruz
+            const currentColors = bagColors[id];
+            
+            currentColors.forEach((color, index) => {
                 const imgPath = `canta${id}_${color}.png`;
                 const delay = index * 0.1; 
                 container.innerHTML += `
@@ -266,12 +275,11 @@
         }
 
         function finish(color) {
-            // Renk ve Modele göre kodu oluşturuyoruz
             const colorCode = color.charAt(0).toUpperCase(); 
             const secretText = `ZNC-${selectedBagId}${colorCode}`;
             document.getElementById('secret-code').innerText = secretText;
 
-            //document.getElementById('final-choice').innerText = `Seçimin: ${color.charAt(0).toUpperCase() + color.slice(1)} Versiyon!`;
+            document.getElementById('final-choice').innerText = `Seçimin: ${color.charAt(0).toUpperCase() + color.slice(1)} Versiyon!`;
             nextScreen('screen-result');
         }
 
@@ -286,7 +294,6 @@
             setTimeout(() => h.remove(), 8000);
         }, 600);
 
-        // Her soruya özel absürt cevap şıkları
         let qIdx = 0;
         const quizData = [
             {
