@@ -4,91 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sadece Senin İçin... 🤍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* Seksi ve Tatlı Koyu Pembe Paleti */
             --primary-pink: #ff4757;
             --dark-pink: #e84393;
-            --deep-rose: #c0392b;
-            --glass-bg: rgba(255, 255, 255, 0.2);
-            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.4);
             --text-color: #ffffff;
         }
 
+        * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
         body {
             margin: 0; padding: 0;
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            /* Koyu Pembe Gradyan Arka Plan */
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #e84393 100%);
+            /* Hareketli Arka Plan Gradienti */
+            background: linear-gradient(-45deg, #ff4757, #e84393, #ff6b81, #c0392b);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
             color: var(--text-color);
-            text-align: center;
-            overflow-x: hidden;
+            text-align: center; overflow-x: hidden;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             min-height: 100vh;
         }
 
-        /* Arka Plan Kalpler */
-        .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        .heart { position: absolute; animation: fall linear forwards; opacity: 0.8; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        /* Cam Efektli Kapsayıcı */
+        /* Yumuşak Kalp Animasyonları */
+        .heart-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .heart { 
+            position: absolute; 
+            animation: floatUp linear forwards; 
+            opacity: 0.5; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
+        }
+        @keyframes floatUp { 
+            0% { transform: translateY(110vh) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; } 
+        }
+
+        /* Ultra Modern Cam Efektli Ana Kapsayıcı */
         .screen {
             display: none; z-index: 10;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            padding: 40px 25px;
-            border-radius: 30px;
+            backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            padding: 40px 30px;
+            border-radius: 35px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 45px rgba(232, 67, 147, 0.3);
-            width: 85%; max-width: 350px;
-            transition: all 0.5s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), inset 0 0 20px rgba(255,255,255,0.1);
+            width: 88%; max-width: 380px;
             color: #fff;
         }
-        .active { display: block; animation: fadeIn 0.6s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Geçiş Animasyonu: Aşağıdan Süzülme ve Büyüme */
+        .active { 
+            display: block; 
+            animation: popIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+        @keyframes popIn { 
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); } 
+            100% { opacity: 1; transform: translateY(0) scale(1); } 
+        }
 
+        /* Tipografi Animasyonları */
         .pulsate {
             font-size: 1.8rem; font-weight: 800;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            animation: pulse 2s infinite;
-            margin-bottom: 25px;
+            text-shadow: 0 4px 15px rgba(255, 255, 255, 0.4);
+            animation: gentlePulse 3s infinite;
+            margin-bottom: 15px; line-height: 1.3;
         }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes gentlePulse { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.03); text-shadow: 0 4px 25px rgba(255, 255, 255, 0.7); } 
+        }
 
-        .rose-btn { font-size: 5rem; cursor: pointer; background: none; border: none; transition: 0.4s; }
-        .rose-btn:hover { transform: scale(1.2); }
+        .rose-btn { 
+            font-size: 4.5rem; cursor: pointer; background: none; border: none; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            margin-top: 20px; display: inline-block;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+        .rose-btn:hover { transform: scale(1.2) rotate(-10deg); filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3)); }
 
-        /* Kartlar ve Butonlar */
-        h2 { font-weight: 700; font-size: 1.5rem; margin-bottom: 20px; }
+        h2 { font-weight: 800; font-size: 1.5rem; margin-bottom: 25px; letter-spacing: 0.5px; }
+
+        /* Modern Şık Butonlar (Staggered Delay ile gelecek) */
         .option-btn {
-            display: block; width: 100%; padding: 18px; margin: 12px 0;
-            background: rgba(255, 255, 255, 0.9);
+            display: block; width: 100%; padding: 16px; margin: 15px 0;
+            background: rgba(255, 255, 255, 0.95);
             color: var(--dark-pink);
-            border: none; border-radius: 18px;
+            border: none; border-radius: 20px;
             font-size: 1.1rem; font-weight: 600;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            position: relative; overflow: hidden;
         }
+        .option-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0,0,0,0.15); }
+        .option-btn:active { transform: translateY(2px) scale(0.98); }
 
-        .bags-container { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* Kartlar için Şık Izgara */
+        .bags-container, .color-variants { 
+            display: grid; grid-template-columns: 1fr; gap: 18px; 
+        }
         .bag-card {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px; padding: 12px;
+            border-radius: 25px; padding: 15px;
             display: flex; align-items: center;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer; position: relative;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
+        .bag-card:hover { transform: scale(1.04) translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .bag-card:active { transform: scale(0.95); }
-        .bag-img { width: 80px; height: 80px; object-fit: cover; border-radius: 12px; margin-right: 15px; }
-        .bag-name { color: var(--dark-pink); font-weight: 700; font-size: 1.2rem; }
-
-        /* Renk Versiyonları */
-        .color-variants { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .color-card {
-            background: #fff; border-radius: 20px; padding: 10px;
-            display: flex; align-items: center; border: 3px solid transparent;
+        
+        .bag-img { 
+            width: 85px; height: 85px; object-fit: cover; 
+            border-radius: 18px; margin-right: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        .color-card.selected { border-color: var(--primary-pink); }
+        .bag-name { 
+            color: var(--dark-pink); font-weight: 800; font-size: 1.25rem; 
+            text-transform: capitalize;
+        }
+
+        /* Sonuç Ekranı İkonu */
+        .final-icon {
+            font-size: 5rem; animation: gentlePulse 2s infinite; margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +146,7 @@
 
     <div id="screen-intro" class="screen active">
         <div class="pulsate">Seni kırdım galiba... 🥺</div>
-        <p style="font-weight: 500;">Tarzını ne kadar iyi tanıyorum test edelim mi?</p>
+        <p style="font-weight: 400; font-size: 1.1rem; opacity: 0.9;">Tarzını ne kadar iyi tanıyorum, test edelim mi?</p>
         <button class="rose-btn" onclick="nextScreen('screen-quiz')">🌹</button>
     </div>
 
@@ -112,15 +161,15 @@
         <h2>Favori Modelin? 🤔</h2>
         <div class="bags-container">
             <div class="bag-card" onclick="selectBag(1)">
-                <img src="canta1.png" class="bag-img">
+                <img src="canta1.png" class="bag-img" alt="Zarif Seri">
                 <span class="bag-name">Zarif Seri</span>
             </div>
             <div class="bag-card" onclick="selectBag(2)">
-                <img src="canta2.png" class="bag-img">
+                <img src="canta2.png" class="bag-img" alt="Modern Seri">
                 <span class="bag-name">Modern Seri</span>
             </div>
             <div class="bag-card" onclick="selectBag(3)">
-                <img src="canta3.png" class="bag-img">
+                <img src="canta3.png" class="bag-img" alt="Klasik Seri">
                 <span class="bag-name">Klasik Seri</span>
             </div>
         </div>
@@ -132,19 +181,27 @@
     </div>
 
     <div id="screen-result" class="screen">
-        <div style="font-size: 4rem;">💖</div>
+        <div class="final-icon">💖</div>
         <h2>Zevkine Bayıldım!</h2>
-        <p id="final-choice" style="font-weight: 600;"></p>
-        <p>Tarzın tam beklediğim gibi muhteşem. Seni her halinle çok seviyorum! ❤️</p>
+        <p id="final-choice" style="font-weight: 800; font-size: 1.3rem; margin: 15px 0; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 15px;"></p>
+        <p style="font-size: 1.05rem; opacity: 0.9;">Tarzın tam beklediğim gibi muhteşem. Seni her halinle çok seviyorum! ❤️</p>
     </div>
 
     <script>
         let selectedBagId = 0;
         const colors = ["bordo", "siyah", "kahverengi"];
 
+        // Ekranlar arası geçişi animasyonlu yapmak için ufak bir bekleme süresi
         function nextScreen(id) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.screen').forEach(s => {
+                s.style.animation = 'none'; // Animasyonu sıfırla
+                s.classList.remove('active');
+            });
+            setTimeout(() => {
+                const target = document.getElementById(id);
+                target.classList.add('active');
+                target.style.animation = 'popIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+            }, 50);
         }
 
         function selectBag(id) {
@@ -152,12 +209,15 @@
             const container = document.getElementById('color-list');
             container.innerHTML = '';
             
-            colors.forEach(color => {
+            // Seçilen modelin 3 farklı rengini dinamik olarak listele
+            colors.forEach((color, index) => {
                 const imgPath = `canta${id}_${color}.png`;
+                // Kartların sırayla gelmesi için animation-delay ekliyoruz (stagger effect)
+                const delay = index * 0.1; 
                 container.innerHTML += `
-                    <div class="bag-card" onclick="finish('${color}')">
-                        <img src="${imgPath}" class="bag-img" onerror="this.src='https://via.placeholder.com/80/e84393/ffffff?text=${color}'">
-                        <span class="bag-name" style="text-transform: capitalize;">${color}</span>
+                    <div class="bag-card" style="animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards; opacity: 0;" onclick="finish('${color}')">
+                        <img src="${imgPath}" class="bag-img" onerror="this.src='https://via.placeholder.com/85/ffffff/e84393?text=${color.toUpperCase()}'">
+                        <span class="bag-name">${color}</span>
                     </div>
                 `;
             });
@@ -165,32 +225,46 @@
         }
 
         function finish(color) {
-            document.getElementById('final-choice').innerText = `Seçimin: ${color} versiyon!`;
+            document.getElementById('final-choice').innerText = `Seçimin: ${color.charAt(0).toUpperCase() + color.slice(1)} Versiyon!`;
             nextScreen('screen-result');
         }
 
-        // Kalp Animasyonu
+        // Daha pürüzsüz yüzen kalpler
         setInterval(() => {
             const h = document.createElement("div");
             h.classList.add("heart");
-            h.innerHTML = "💗";
+            h.innerHTML = ["🤍", "💗", "✨", "🌸"][Math.floor(Math.random() * 4)];
             h.style.left = Math.random() * 100 + "vw";
-            h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            h.style.animationDuration = (Math.random() * 4 + 4) + "s";
+            h.style.fontSize = (Math.random() * 1 + 1) + "rem";
             document.getElementById('heart-bg').appendChild(h);
-            setTimeout(() => h.remove(), 6000);
-        }, 400);
+            setTimeout(() => h.remove(), 8000);
+        }, 600);
 
-        // Basit Soru Mantığı
+        // Sorular Akışı
         let qIdx = 0;
-        const qs = ["En sevdiğin renk koyu tonlar mıdır?", "Şıklık senin için her şeyden önce mi gelir?", "Sürprizleri sever misin?"];
+        const qs = [
+            "1. En sevdiğin renk tonları genelde koyu mudur?", 
+            "2. Şıklık senin için her şeyden önce mi gelir?", 
+            "3. Sürpriz testleri sever misin?"
+        ];
         function loadQ() {
+            const optionsDiv = document.getElementById('options');
             if(qIdx < qs.length) {
                 document.getElementById('q-text').innerText = qs[qIdx++];
-                document.getElementById('options').innerHTML = `
-                    <button class="option-btn" onclick="loadQ()">Kesinlikle</button>
-                    <button class="option-btn" onclick="loadQ()">Bazen</button>
-                `;
-            } else { nextScreen('screen-bags'); }
+                // Butonları yenilerken küçük bir fade-in efekti
+                optionsDiv.style.opacity = 0;
+                setTimeout(() => {
+                    optionsDiv.innerHTML = `
+                        <button class="option-btn" onclick="loadQ()">Kesinlikle</button>
+                        <button class="option-btn" onclick="loadQ()">Bazen</button>
+                    `;
+                    optionsDiv.style.transition = "opacity 0.5s";
+                    optionsDiv.style.opacity = 1;
+                }, 200);
+            } else { 
+                nextScreen('screen-bags'); 
+            }
         }
     </script>
 </body>
